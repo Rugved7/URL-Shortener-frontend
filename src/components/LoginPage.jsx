@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useContext, useState } from 'react';
+import { set, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { ContextApi } from '../contextAPI/ContextAPI';
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../api/api';
 import TextFields from './TextFields';
 
 const LoginPage = () => {
     const [loader, setLoader] = useState(false);
+    const {setToken} = useContext(ContextApi)
+
     const navigate = useNavigate();
 
     const {
@@ -32,7 +35,7 @@ const LoginPage = () => {
                 data    
             );
             // Assuming the response contains user data or a token--> Store it in localStorage 
-
+            setToken(response.token);
           localStorage.setItem("JWT_TOKEN", JSON.stringify(response.token));
 
             toast.success(response.message || "Login successful!", {

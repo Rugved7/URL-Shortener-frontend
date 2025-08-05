@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaLink, FaChartLine, FaShieldAlt, FaBolt } from "react-icons/fa";
+import { ContextApi } from "../contextAPI/ContextAPI";
+import { useContext } from "react";
 
 const LandingPage = () => {
   const navigate = useNavigate();
+   const {token} = useContext(ContextApi)
 
   const dashBoardNavigateHandler = () => {
     // Navigation logic will be added here
