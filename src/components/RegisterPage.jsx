@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import api from '../api/api';
 import TextFields from './TextFields';
-import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
     const [loader, setLoader] = useState(false);
+    const navigate = useNavigate();
 
     const {
         register,
         handleSubmit,
         reset,
-        formState: {errors}
+        formState: { errors }
     } = useForm({
         defaultValues: {
             username: "",
@@ -21,7 +25,37 @@ const RegisterPage = () => {
     });
 
     const registerHandler = async (data) => {
-        // Your register logic
+        setLoader(true);
+        try {
+            const { data: response } = await api.post(
+                "/api/auth/public/register",
+                data    
+            );
+            reset();
+            toast.success(response.message || "Registration successful!", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            navigate("/login");
+        } catch (error) {
+            console.error("Registration failed:", error);
+            toast.error(error.response?.data?.message || "Registration failed. Please try again.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } finally {
+            setLoader(false);
+        }
     };
 
     return (
@@ -99,7 +133,7 @@ const RegisterPage = () => {
                 </p>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default RegisterPage
+export default RegisterPage;
