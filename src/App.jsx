@@ -4,6 +4,7 @@ import AboutPage from "./components/AboutPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RegisterPage from "./components/RegisterPage";
+import LoginPage from "./components/LoginPage";
 
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -17,6 +18,8 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        {/* Add more routes as needed */}
       </Routes>
     <Footer />
       </BrowserRouter>
