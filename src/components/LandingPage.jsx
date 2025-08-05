@@ -77,7 +77,7 @@ const LandingPage = () => {
             className="lg:w-1/2 flex justify-center"
           >
             <img 
-              src="/images/img2.png" 
+              src="\src\assets\Image_1.png" 
               alt="URL Analytics Dashboard" 
               className="w-full max-w-lg rounded-xl shadow-lg border border-gray-100"
             />
