@@ -41,7 +41,7 @@ const Navbar = () => {
           </li>
           <li>
             <button
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/register")}
               className="bg-white text-indigo-600 hover:bg-indigo-50 font-medium px-4 py-2 rounded-md transition-colors"
             >
               Sign Up
