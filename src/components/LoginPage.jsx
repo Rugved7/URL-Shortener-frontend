@@ -49,7 +49,7 @@ const LoginPage = () => {
             });
             
             reset();
-            navigate("/");
+            navigate("/dashboard");
         } catch (error) {
             console.error("Login failed:", error);
             toast.error(error.response?.data?.message || "Login failed. Please try again.", {

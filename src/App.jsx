@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RegisterPage from "./components/RegisterPage";
 import LoginPage from "./components/LoginPage";
+import DashboardLayout from "./components/Dashboard/DashboardLayout";
 
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard/" element={<DashboardLayout />} />
         {/* Add more routes as needed */}
       </Routes>
     <Footer />
