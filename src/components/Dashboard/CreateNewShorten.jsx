@@ -44,6 +44,12 @@ const CreateNewShorten = ({ setOpen, refetch }) => {
             });
           });
 
+          // await refetch();
+          toast.success("Short URL Created Successfully", { 
+            position: "bottom-center",
+            className: "mb-5",
+            duration: 3000,
+          });
           reset();
           setOpen(false);
     } catch (error) {
