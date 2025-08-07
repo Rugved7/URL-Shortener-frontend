@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useStoreContext } from "../../contextAPI/ContextAPI";
 import { useForm } from 'react-hook-form';;
-import TextField from '../TextFields'
+import TextFields from '../TextFields'
 import { Tooltip } from '@mui/material';
 import { RxCross2 } from 'react-icons/rx';
 import api from '../../api/api';
 import toast from 'react-hot-toast';
+
 
 const CreateNewShorten = ({ setOpen, refetch }) => {
     const { token } = useStoreContext()
@@ -67,7 +68,7 @@ const CreateNewShorten = ({ setOpen, refetch }) => {
         <hr className="mt-2 sm:mb-5 mb-3 text-slate-950" />
 
         <div>
-          <TextField
+          <TextFields
             label="Enter URL"
             required
             id="originalUrl"
@@ -80,7 +81,7 @@ const CreateNewShorten = ({ setOpen, refetch }) => {
         </div>
 
         <button
-          className="bg-customRed font-semibold text-white w-32  bg-custom-gradient  py-2  transition-colors  rounded-md my-3"
+          className="bg-customRed font-semibold text-indigo-500 w-32 bg-custom-gradient py-2 transition-colors rounded-md my-3"
           type="text"
         >
           {loading ? "Loading..." : "Create"}

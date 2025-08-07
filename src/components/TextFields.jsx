@@ -1,4 +1,4 @@
-const TextField = ({
+const TextFields = ({
     label,
     id,
     type,
@@ -60,4 +60,4 @@ const TextField = ({
     );
   };
   
-  export default TextField;
+  export default TextFields;
