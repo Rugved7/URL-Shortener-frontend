@@ -1,6 +1,4 @@
 import Graph from "./Graph";
-import { dummyData } from "../../dummyData/Data";
-import { useSyncExternalStore } from "react";
 import { useStoreContext } from "../../contextAPI/ContextAPI";
 import { useFetchTotalClicks } from "../../hooks/useQuery";
 
