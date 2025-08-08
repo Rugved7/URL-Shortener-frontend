@@ -1,55 +1,92 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-indigo-700 text-white py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <h2 className="text-2xl font-bold mb-4 flex items-center">
-              <span className="italic">Swift</span>Link Analytics
+    <footer className="bg-indigo-700 text-white py-8 sm:py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="md:col-span-2 space-y-4">
+            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <span className="italic font-serif">Swift</span>
+              <span>Link Analytics</span>
             </h2>
-            <p className="text-indigo-100">
-              Professional URL shortening and analytics platform for businesses and individuals.
+            <p className="text-indigo-100 leading-relaxed max-w-md">
+              Professional URL shortening and analytics platform for businesses
+              and individuals.
             </p>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <Link><a href="/" className="text-indigo-100 hover:text-white transition-colors">Home</a></Link>
-              <Link><a href="/about" className="text-indigo-100 hover:text-white transition-colors">About</a></Link>
-              <li><a href="/features" className="text-indigo-100 hover:text-white transition-colors">Features</a></li>
-              <li><a href="#" className="text-indigo-100 hover:text-white transition-colors">Pricing</a></li>
-            </ul>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <nav>
+              <ul className="space-y-3">
+                <li>
+                  <Link
+                    to="/"
+                    className="text-indigo-100 hover:text-white transition-colors duration-200"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/about"
+                    className="text-indigo-100 hover:text-white transition-colors duration-200"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/features"
+                    className="text-indigo-100 hover:text-white transition-colors duration-200"
+                  >
+                    Features
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="text-indigo-100 hover:text-white transition-colors" aria-label="Facebook">
-                <FaFacebook size={20} />
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Connect</h3>
+            <div className="flex space-x-5">
+              <a
+                href="mailto:rugvedagasti7@gmail.com"
+                target="blank"
+                className="text-indigo-100 hover:text-white transition-colors duration-200 transform hover:scale-110"
+                aria-label="Email"
+              >
+                <MdOutlineEmail size={22} />
               </a>
-              <a href="#" className="text-indigo-100 hover:text-white transition-colors" aria-label="Twitter">
-                <FaTwitter size={20} />
+              <a
+                href="https://www.linkedin.com/in/rugved-agasti-09350121b/"
+                target="blank"
+                className="text-indigo-100 hover:text-white transition-colors duration-200 transform hover:scale-110"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={22} />
               </a>
-              <a href="#" className="text-indigo-100 hover:text-white transition-colors" aria-label="Instagram">
-                <FaInstagram size={20} />
-              </a>
-              <a href="#" className="text-indigo-100 hover:text-white transition-colors" aria-label="LinkedIn">
-                <FaLinkedin size={20} />
-              </a>
-              <a href="#" className="text-indigo-100 hover:text-white transition-colors" aria-label="GitHub">
-                <FaGithub size={20} />
+              <a
+                href="https://github.com/Rugved7/URL-Shortener-frontend"
+                target="blank"
+                className="text-indigo-100 hover:text-white transition-colors duration-200 transform hover:scale-110"
+                aria-label="GitHub"
+              >
+                <FaGithub size={22} />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-indigo-600 mt-8 pt-8 text-center md:text-left text-indigo-100">
-          <p>&copy; {new Date().getFullYear()} SwiftLink Analytics made by Rugved Aagsti. All rights reserved.</p>
+        <div className="border-t border-indigo-600 pt-8">
+          <p className="text-center text-indigo-100 text-sm">
+            &copy; {new Date().getFullYear()} SwiftLink Analytics made by Rugved
+            Aagsti. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
