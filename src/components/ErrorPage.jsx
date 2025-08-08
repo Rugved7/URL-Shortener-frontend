@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaExclamationTriangle, FaArrowLeft, FaRocket } from 'react-icons/fa';
 
@@ -51,7 +50,7 @@ const ErrorPage = ({ errorCode = 404, errorMessage = "Page Not Found" }) => {
               <p>Error Code: {errorCode}</p>
               <p className="mt-1">Timestamp: {new Date().toLocaleString()}</p>
               <p className="mt-1">
-                If this persists, please contact support@swiftlink.com
+                If this persists, please try to log in again or wait for sometime.
               </p>
             </div>
           </details>
@@ -61,8 +60,8 @@ const ErrorPage = ({ errorCode = 404, errorMessage = "Page Not Found" }) => {
       {/* Optional Branding */}
       <div className="mt-12 text-center">
         <Link to="/" className="flex items-center justify-center space-x-2">
-          <span className="text-2xl font-bold text-indigo-600 italic">Swift</span>
-          <span className="text-2xl font-bold text-gray-800">Link Analytics</span>
+          <span className="text-2xl font-bold text-indigo-600 italic">SwiftLink</span>
+          <span className="text-2xl font-bold text-gray-800">Analytics</span>
         </Link>
       </div>
     </div>

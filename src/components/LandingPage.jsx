@@ -1,15 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaLink, FaChartLine, FaShieldAlt, FaBolt } from "react-icons/fa";
-import { ContextApi } from "../contextAPI/ContextAPI";
-import { useContext } from "react";
+import {useStoreContext } from "../contextAPI/ContextAPI";
 
 const LandingPage = () => {
   const navigate = useNavigate();
-   const {token} = useContext(ContextApi)
+   const {token} = useStoreContext();
 
   const dashBoardNavigateHandler = () => {
-    // Navigation logic will be added here
+    if (token) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
   };
 
   const FeatureCard = ({ title, desc, icon }) => (
@@ -58,6 +61,7 @@ const LandingPage = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="flex flex-wrap gap-4"
             >
+
               <button
                 onClick={dashBoardNavigateHandler}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-md transition-colors"
