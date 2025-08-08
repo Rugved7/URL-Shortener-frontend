@@ -32,7 +32,7 @@ const RegisterPage = () => {
             );
             reset();
             toast.success(response.message || "Registration successful!", {
-                position: "top-right",
+                position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,

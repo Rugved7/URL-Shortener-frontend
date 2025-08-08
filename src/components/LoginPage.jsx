@@ -38,7 +38,7 @@ const LoginPage = () => {
           localStorage.setItem("JWT_TOKEN", JSON.stringify(response.token));
 
             toast.success(response.message || "Login successful!", {
-                position: "top-right",
+                position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -124,7 +124,7 @@ const LoginPage = () => {
                         to="/register"
                         className='font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition-colors'
                     >
-                        Login
+                        Register here
                     </Link>
                 </p>
             </form>
