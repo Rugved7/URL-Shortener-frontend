@@ -30,7 +30,7 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
     if (!analyticToggle) {
       setSelectedUrl(shortUrl);
     }
-    setAnalyticToggle(!analyticToggle);
+    setAnalyticToggle(!analyticToggle); 
   };
 
   const handleCopy = () => {
