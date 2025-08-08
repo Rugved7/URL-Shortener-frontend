@@ -14,7 +14,6 @@ const AppRouter = () => {
   return (
     <>
       <Navbar />
-      <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<AboutPage />} />

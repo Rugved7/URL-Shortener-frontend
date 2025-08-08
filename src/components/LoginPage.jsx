@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { ContextApi } from '../contextAPI/ContextAPI';
-import 'react-toastify/dist/ReactToastify.css';
 import api from '../api/api';
 import TextFields from './TextFields';
+import toast from 'react-hot-toast';
 
 const LoginPage = () => {
     const [loader, setLoader] = useState(false);
@@ -53,7 +52,7 @@ const LoginPage = () => {
         } catch (error) {
             console.error("Login failed:", error);
             toast.error(error.response?.data?.message || "Login failed. Please try again.", {
-                position: "top-right",
+                position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,

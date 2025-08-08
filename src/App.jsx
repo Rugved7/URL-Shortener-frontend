@@ -6,6 +6,7 @@ const App = () => {
   const CurrentApp = getApps();
   return (
     <BrowserRouter>
+    <Toaster position="top-center" reverseOrder={false} />
       <CurrentApp />
     </BrowserRouter>
   );

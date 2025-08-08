@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useStoreContext } from "../../contextAPI/ContextAPI";
 import { Hourglass } from "react-loader-spinner";
 import Graph from "./Graph";
+import toast from "react-hot-toast";
 
 const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
   const { token } = useStoreContext();
@@ -47,6 +48,7 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, createdDate }) => {
       );
       setAnalyticsData(data);
       setSelectedUrl("");
+      toast.success("Analytics fetched successfully!");
       console.log(data);
     } catch (error) {
       navigate("/error");
