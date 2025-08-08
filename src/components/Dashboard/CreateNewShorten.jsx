@@ -1,15 +1,15 @@
-import { useState } from 'react'
-import { useStoreContext } from "../../contextAPI/ContextAPI";
-import { useForm } from 'react-hook-form';;
+import { useState } from 'react';
+import { useStoreContext } from '../../contextAPI/ContextAPI';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import api from '../../api/api';
 import TextFields from '../TextFields'
 import { Tooltip } from '@mui/material';
 import { RxCross2 } from 'react-icons/rx';
-import api from '../../api/api';
-import toast from 'react-hot-toast';
 
 
 const CreateNewShorten = ({ setOpen, refetch }) => {
-    const { token } = useStoreContext()
+    const { token } = useStoreContext();
     const [loading, setLoading] = useState(false);
 
   const {
@@ -29,31 +29,28 @@ const CreateNewShorten = ({ setOpen, refetch }) => {
     try {
         const { data: res } = await api.post("/api/urls/shorten", data, {
             headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: "Bearer " + token,
             },
-          });
+        });
 
-          const shortenUrl = `${import.meta.env.VITE_REACT_SUBDOMAIN}/${res.shortUrl}`;
-          navigator.clipboard.writeText(shortenUrl).then(() => {
-            toast.success("Short URL Copied to Clipboard", {
+        if (res.shortUrl) {
+            toast.success("URL shortened successfully!", {
                 position: "bottom-center",
-                className: "mb-5",
-                duration: 3000,
+                duration: 3000
             });
-          });
-
-          await refetch();
-          toast.success("Short URL Created Successfully", { 
-            position: "bottom-center",
-            className: "mb-5",
-            duration: 3000,
-          });
-          reset();
-          setOpen(false);
+            reset();
+            setOpen(false);
+            
+            // Only call refetch if it exists
+            if (typeof refetch === 'function') {
+                await refetch();
+            }
+        }
     } catch (error) {
-        toast.error("Create ShortURL Failed");
+        console.error("Error creating short URL:", error);
+        toast.error(error.response?.data?.message || "Error creating short URL");
     } finally {
         setLoading(false);
     }
@@ -88,7 +85,7 @@ const CreateNewShorten = ({ setOpen, refetch }) => {
 
         <button
           className="bg-customRed font-semibold text-indigo-500 w-32 bg-custom-gradient py-2 transition-colors rounded-md my-3"
-          type="text"
+          type="submit"  // Changed from "text" to "submit"
         >
           {loading ? "Loading..." : "Create"}
         </button>

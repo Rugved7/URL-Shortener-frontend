@@ -1,33 +1,26 @@
-
-import Modal from '@mui/material/Modal';
+import { useQueryClient } from '@tanstack/react-query';
 import CreateNewShorten from './CreateNewShorten';
 
+const ShortenPopUp = ({ open, setOpen }) => {
+    const queryClient = useQueryClient();
 
-const ShortenPopUp = ({open, setOpen, refetchUrls}) => {
-    const handleClose = () => setOpen(false);
+    const handleRefetch = async () => {
+        await queryClient.invalidateQueries(['myShortUrls']);
+    };
 
-  return (
-    <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+    if (!open) return null;
 
-        <div className='flex justify-center items-center h-full w-full'>
-            <CreateNewShorten setOpen={setOpen} refetch={refetchUrls}/>
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/30">
+            <div className="bg-white rounded-lg shadow-xl p-6 w-[90%] max-w-md m-4 animate-modalSlide">
+                <CreateNewShorten 
+                    setOpen={setOpen} 
+                    refetch={handleRefetch}
+                />
+            </div>
         </div>
+    );
+};
 
-        {/* <Box>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box> */}
-      </Modal>
-  )
-}
-export default ShortenPopUp
+export default ShortenPopUp;
 

@@ -1,11 +1,31 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaLink, FaChartLine, FaShieldAlt, FaBolt } from "react-icons/fa";
-import {useStoreContext } from "../contextAPI/ContextAPI";
+import { useStoreContext } from "../contextAPI/ContextAPI";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+// Register ChartJS components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const LandingPage = () => {
   const navigate = useNavigate();
-   const {token} = useStoreContext();
+  const { token } = useStoreContext();
 
   const dashBoardNavigateHandler = () => {
     if (token) {
@@ -13,6 +33,59 @@ const LandingPage = () => {
     } else {
       navigate("/login");
     }
+  };
+
+  // Sample analytics data for the demo graph
+  const analyticsData = {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    datasets: [
+      {
+        label: 'Link Clicks',
+        data: [1250, 1890, 2100, 2780, 1890, 2390],
+        backgroundColor: '#4f46e5', // indigo-600
+        borderColor: '#4f46e5',
+        borderWidth: 0,
+        borderRadius: 6,
+        hoverBackgroundColor: '#6366f1', // indigo-500
+      }
+    ]
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        backgroundColor: '#1e1b4b', // indigo-900
+        titleColor: '#ffffff',
+        bodyColor: '#e0e7ff', // indigo-100
+        borderColor: '#4f46e5', // indigo-600
+        borderWidth: 1,
+        padding: 12,
+        usePointStyle: true,
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: '#4b5563', // gray-600
+        }
+      },
+      y: {
+        grid: {
+          color: '#e5e7eb', // gray-200
+        },
+        ticks: {
+          color: '#4b5563', // gray-600
+        }
+      }
+    },
+    maintainAspectRatio: false
   };
 
   const FeatureCard = ({ title, desc, icon }) => (
@@ -61,7 +134,6 @@ const LandingPage = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="flex flex-wrap gap-4"
             >
-
               <button
                 onClick={dashBoardNavigateHandler}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-md transition-colors"
@@ -83,11 +155,13 @@ const LandingPage = () => {
             transition={{ duration: 0.6 }}
             className="lg:w-1/2 flex justify-center"
           >
-            <img 
-              src="\src\assets\Image_1.png" 
-              alt="URL Analytics Dashboard" 
-              className="w-full max-w-lg rounded-xl shadow-lg border border-gray-100"
-            />
+            <div className="w-full max-w-lg bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Monthly Link Performance</h3>
+              <div className="h-64">
+                <Bar data={analyticsData} options={options} />
+              </div>
+              <p className="text-sm text-gray-500 mt-2"></p>
+            </div>
           </motion.div>
         </div>
 
@@ -100,7 +174,7 @@ const LandingPage = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl font-bold text-center text-gray-900 mb-12"
           >
-            Trusted by professionals at world-class companies
+            Build for professionals, Trusted by professionals 
           </motion.p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

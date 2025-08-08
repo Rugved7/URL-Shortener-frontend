@@ -106,21 +106,6 @@ const AboutPage = () => {
           </div>
         </div>
 
-        {/* Mission Statement */}
-        <div className="bg-indigo-600 text-white p-10 rounded-2xl mb-16">
-          <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-          <p className="text-lg mb-6">
-            At SwiftLink Analytics, we believe in empowering businesses and
-            individuals with tools that simplify digital sharing while providing
-            actionable insights. What started as a simple URL shortener has
-            grown into a comprehensive link management platform trusted by over
-            50,000 customers worldwide.
-          </p>
-          <p className="text-lg">
-            We're committed to continuous innovation, exceptional performance,
-            and making advanced analytics accessible to everyone.
-          </p>
-        </div>
       </div>
     </div>
   );

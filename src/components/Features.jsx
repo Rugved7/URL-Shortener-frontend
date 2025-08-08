@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FaBolt,
   FaChartLine,
@@ -18,7 +17,7 @@ const FeaturesPage = () => {
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Powerful <span className="text-indigo-600">Features</span>
+            Powerful Upcoming <span className="text-indigo-600">Features</span>
           </h1>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Everything you need to create, share, and track your links effectively
