@@ -74,7 +74,7 @@ Contributions are welcome! Feel free to submit a Pull Request.
 
 MIT License
 
-Copyright (c) 2023 Rugved Aagasti
+Copyright (c) 2025 Rugved Aagasti
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
