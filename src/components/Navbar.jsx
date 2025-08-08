@@ -4,14 +4,18 @@ import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { useStoreContext } from "../contextAPI/ContextAPI";
 import { toast } from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Navbar = () => {
   const path = useLocation().pathname;
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navigate = useNavigate();
   const { token, setToken } = useStoreContext();
+  const queryClient = useQueryClient();
 
   const LogoutHandler = () => {
+    // Clear all cached queries
+    queryClient.removeQueries();
     setToken(null);
     localStorage.removeItem("JWT_TOKEN");
     toast.success("Logged out successfully");

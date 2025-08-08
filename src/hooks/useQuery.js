@@ -1,20 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../api/api";
 
-
 export const useFetchMyShortUrls = (token, onError) => {
   return useQuery({
-    queryKey: ["my-shortenurls"],  // Changed to object syntax (recommended in v4+)
+    queryKey: ["my-shortenurls", token], // Include token in query key
     queryFn: async () => {
       try {
+        if (!token) return []; // Return empty if no token
         const response = await api.get("/api/urls/myurls", {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            Authorization: `Bearer ${token}`,  // Using template literal
+            Authorization: `Bearer ${token}`,
           },
         });
-        return response.data;  // Return only the data part
+        return response.data;
       } catch (error) {
         throw new Error(
           error.response?.data?.message || "Failed to fetch short URLs"
@@ -22,24 +22,24 @@ export const useFetchMyShortUrls = (token, onError) => {
       }
     },
     select: (data) => {
-      // Create a new array before sorting to avoid mutation
       return [...data].sort(
         (a, b) => new Date(b.createdDate) - new Date(a.createdDate)
       );
     },
     onError,
-    staleTime: 5 * 60 * 1000,  // Increased to 5 minutes (more practical)
-    retry: 2,  // Added retry mechanism
-    enabled: !!token,  // Only fetch if token exists
+    staleTime: 0, // Always refetch when data is needed
+    refetchOnMount: true,
+    retry: 1,
   });
 };
 
 
 export const useFetchTotalClicks = (token, onError) => {
   return useQuery({
-    queryKey: ["url-totalclick"],
+    queryKey: ["url-totalclick", token], // Include token in query key
     queryFn: async () => {
       try {
+        if (!token) return {}; // Return empty if no token
         const response = await api.get("/api/urls/totalClicks", {
           params: {
             startDate: "2025-01-01",
@@ -65,8 +65,8 @@ export const useFetchTotalClicks = (token, onError) => {
       }));
     },
     onError,
-    staleTime: 5 * 60 * 1000,
-    retry: 2,
-    enabled: !!token,
+    staleTime: 0, // Always refetch when data is needed
+    refetchOnMount: true,
+    retry: 1,
   });
 };

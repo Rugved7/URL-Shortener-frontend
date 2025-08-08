@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import CreateNewShorten from './CreateNewShorten';
 
 
-const ShortenPopUp = ({open, setOpen, refetch}) => {
+const ShortenPopUp = ({open, setOpen, refetchUrls}) => {
     const handleClose = () => setOpen(false);
 
   return (
@@ -15,7 +15,7 @@ const ShortenPopUp = ({open, setOpen, refetch}) => {
       >
 
         <div className='flex justify-center items-center h-full w-full'>
-            <CreateNewShorten setOpen={setOpen} refetch={refetch}/>
+            <CreateNewShorten setOpen={setOpen} refetch={refetchUrls}/>
         </div>
 
         {/* <Box>

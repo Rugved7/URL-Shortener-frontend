@@ -1,7 +1,7 @@
 import Graph from "./Graph";
 import { useStoreContext } from "../../contextAPI/ContextAPI";
 import { useFetchMyShortUrls, useFetchTotalClicks } from "../../hooks/useQuery";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ShortenPopUp from "./ShortenPopUp";
 import ShortenUrlList from "./ShortenUrlList";
 import { FaLink } from "react-icons/fa";
@@ -10,20 +10,29 @@ const DashboardLayout = () => {
   const { token } = useStoreContext();
   const [shortenPopup, setShortenPopup] = useState(false);
 
-  const { isLoading: loader, data: totalClicks } = useFetchTotalClicks(
-    token,
-    onError
-  );
+  const { 
+    isLoading: loader, 
+    data: totalClicks,
+    refetch: refetchClicks 
+  } = useFetchTotalClicks(token, onError);
 
   const {
     isLoading,
     data: myShortenUrls,
-    refetch,
+    refetch: refetchUrls,
   } = useFetchMyShortUrls(token, onError);
 
   function onError() {
     console.log("Error");
   }
+
+  // Refetch data when token changes
+  useEffect(() => {
+    if (token) {
+      refetchClicks();
+      refetchUrls();
+    }
+  }, [token]);
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 py-8 px-4 sm:px-8 lg:px-16">
@@ -81,7 +90,7 @@ const DashboardLayout = () => {
         )}
 
         <ShortenPopUp
-          refetch={refetch}
+          refetch={refetchUrls}
           open={shortenPopup}
           setOpen={setShortenPopup}
         />

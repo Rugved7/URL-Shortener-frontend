@@ -1,7 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import ShortenUrlPage from "./components/ShortenUrlPage";
-import { Toaster } from "react-hot-toast";
-import React from "react";
 import LandingPage from "./components/LandingPage";
 import AboutPage from "./components/AboutPage";
 import Navbar from "./components/Navbar";
@@ -10,6 +8,7 @@ import RegisterPage from "./components/RegisterPage";
 import LoginPage from "./components/LoginPage";
 import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "./components/ErrorPage"; 
 
 const AppRouter = () => {
   return (
@@ -27,6 +26,10 @@ const AppRouter = () => {
           path="/dashboard/"
           element={< PrivateRoute publicPage={false}><DashboardLayout /></PrivateRoute>}
         />
+
+        {/* Error Page */}
+         <Route path="*" element={<ErrorPage />} />
+
       </Routes>
       <Footer />
     </>
