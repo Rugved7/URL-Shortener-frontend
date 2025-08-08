@@ -50,11 +50,6 @@ VITE_REACT_SUBDOMAIN=your_frontend_url
 ```bash
 npm run dev
 ```
-
-## 📸 Screenshots
-
-[Add your application screenshots here]
-
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to submit a Pull Request.
