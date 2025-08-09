@@ -10,7 +10,7 @@ const ShortenUrlPage = () => {
     }
   }, [url]);
   
-  return null;
+  return <p>Redirectng...</p>;
 };
 
 export default ShortenUrlPage;

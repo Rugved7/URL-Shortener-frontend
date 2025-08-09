@@ -12,13 +12,17 @@ import ErrorPage from "./components/ErrorPage";
 import Features from "./components/Features";
 
 const AppRouter = () => {
+
+  const hideHeaderFooter = location.pathname.startsWith("/s");
+
   return (
     <>
-      <Navbar />
+      {!hideHeaderFooter && <Navbar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/about" element={<AboutPage />} />\
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/features" element={<Features />} />
+        <Route path="/s/:url" element={<ShortenUrlPage />} />
 
         
         <Route path="/register"  element={< PrivateRoute publicPage={true}><RegisterPage /></PrivateRoute>} />
@@ -33,7 +37,9 @@ const AppRouter = () => {
          <Route path="*" element={<ErrorPage />} />
 
       </Routes>
-      <Footer />
+      {!hideHeaderFooter && <Footer />}
+      
+
     </>
   );
 };
